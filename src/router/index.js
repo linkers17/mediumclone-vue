@@ -4,6 +4,11 @@ import RegisterComponent from "@/views/RegisterComponent";
 const routes = [
   {
     path: '/',
+    name: 'home',
+    component: RegisterComponent
+  },
+  {
+    path: '/',
     name: 'login',
     component: RegisterComponent
   },

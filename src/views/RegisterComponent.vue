@@ -7,18 +7,41 @@
                     <p class="text-xs-center">
                         <router-link :to="{name: 'login'}">Need an account?</router-link>
                     </p>
-                    VALIDATION ERRORS
+                    <mcv-validation-errors
+                        v-if="validationErrors"
+                        :validation-errors="validationErrors"
+                    ></mcv-validation-errors>
                     <form @submit.prevent="onSubmit">
                         <fieldset class="form-group">
-                            <input type="text" class="form-control" placeholder="Username">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Username"
+                                v-model="username"
+                            >
                         </fieldset>
                         <fieldset class="form-group">
-                            <input type="text" class="form-control" placeholder="Email">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Email"
+                                v-model="email"
+                            >
                         </fieldset>
                         <fieldset class="form-group">
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input
+                                type="password"
+                                class="form-control"
+                                placeholder="Password"
+                                v-model="password"
+                            >
                         </fieldset>
-                        <button class="btn btn-lg btn-primary pull-xs-right">Sign Up</button>
+                        <button
+                            class="btn btn-lg btn-primary pull-xs-right"
+                            :disabled="isSubmitting"
+                        >
+                            Sign Up
+                        </button>
                     </form>
                 </div>
             </div>
@@ -27,11 +50,38 @@
 </template>
 
 <script>
+    import { mapState } from "vuex";
+    import McvValidationErrors from '@/components/ValidationErrorsComponent';
+
     export default {
         name: 'McvRegister',
+        components: {
+            McvValidationErrors
+        },
+        data() {
+          return {
+              email: '',
+              username: '',
+              password: ''
+          }
+        },
+        computed: {
+            ...mapState({
+                isSubmitting: state => state.auth.isSubmitting,
+                validationErrors: state => state.auth.validationErrors
+            })
+        },
         methods: {
             onSubmit() {
-                console.log('submitted form');
+                this.$store.dispatch('register', {
+                    email: this.email,
+                    username: this.username,
+                    password: this.password
+                })
+                .then(res => {
+                    console.log('res', res);
+                    this.$router.push({name: 'home'});
+                });
             }
         }
     }
