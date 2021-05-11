@@ -51,7 +51,9 @@
 
 <script>
     import { mapState } from "vuex";
+
     import McvValidationErrors from '@/components/ValidationErrorsComponent';
+    import { actionTypes } from "@/store/modules/auth";
 
     export default {
         name: 'McvRegister',
@@ -73,7 +75,7 @@
         },
         methods: {
             onSubmit() {
-                this.$store.dispatch('register', {
+                this.$store.dispatch(actionTypes.register, {
                     email: this.email,
                     username: this.username,
                     password: this.password
