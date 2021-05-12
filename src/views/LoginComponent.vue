@@ -3,44 +3,36 @@
         <div class="container page">
             <div class="row">
                 <div class="col-md-6 offset-md-3 col-xs-12">
-                    <h1 class="text-xs-center">Sign Up</h1>
+                    <h1 class="text-xs-center">Sign in</h1>
                     <p class="text-xs-center">
-                        <router-link :to="{name: 'login'}">Have an account?</router-link>
+                        <router-link :to="{name: 'register'}">Need an account?</router-link>
                     </p>
                     <mcv-validation-errors
-                        v-if="validationErrors"
-                        :validation-errors="validationErrors"
+                            v-if="validationErrors"
+                            :validation-errors="validationErrors"
                     ></mcv-validation-errors>
                     <form @submit.prevent="onSubmit">
                         <fieldset class="form-group">
                             <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Username"
-                                v-model="username"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Email"
+                                    v-model="email"
                             >
                         </fieldset>
                         <fieldset class="form-group">
                             <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Email"
-                                v-model="email"
-                            >
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <input
-                                type="password"
-                                class="form-control"
-                                placeholder="Password"
-                                v-model="password"
+                                    type="password"
+                                    class="form-control"
+                                    placeholder="Password"
+                                    v-model="password"
                             >
                         </fieldset>
                         <button
-                            class="btn btn-lg btn-primary pull-xs-right"
-                            :disabled="isSubmitting"
+                                class="btn btn-lg btn-primary pull-xs-right"
+                                :disabled="isSubmitting"
                         >
-                            Sign Up
+                            Sign in
                         </button>
                     </form>
                 </div>
@@ -56,16 +48,15 @@
     import { actionTypes } from "@/store/modules/auth";
 
     export default {
-        name: 'McvRegister',
+        name: 'McvLogin',
         components: {
             McvValidationErrors
         },
         data() {
-          return {
-              email: '',
-              username: '',
-              password: ''
-          }
+            return {
+                email: '',
+                password: ''
+            }
         },
         computed: {
             ...mapState({
@@ -75,15 +66,14 @@
         },
         methods: {
             onSubmit() {
-                this.$store.dispatch(actionTypes.register, {
+                this.$store.dispatch(actionTypes.login, {
                     email: this.email,
-                    username: this.username,
                     password: this.password
                 })
-                .then(res => {
-                    console.log('res', res);
-                    this.$router.push({name: 'home'});
-                });
+                    .then(res => {
+                        console.log('res', res);
+                        this.$router.push({name: 'home'});
+                    });
             }
         }
     }
