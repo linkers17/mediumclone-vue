@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-if="isLoading">Loading...</div>
-        <div v-if="error">Something bad happened</div>
+        <mcv-loading v-if="isLoading"></mcv-loading>
+        <mcv-error-message v-if="error"></mcv-error-message>
         <div v-if="feed">
             <div class="article-preview" v-for="(article, index) in feed.articles" :key="index">
                 <div class="article-meta">
@@ -47,8 +47,12 @@
     import {mapState} from "vuex";
 
     import { actionTypes } from "@/store/modules/feed";
-    import McvPagination from '@/components/PaginationComponent';
     import { limit } from '@/helpers/vars';
+
+    import McvPagination from '@/components/PaginationComponent';
+    import McvLoading from '@/components/LoadingComponent';
+    import McvErrorMessage from '@/components/ErrorMessageComponent';
+
     import { stringify, parseUrl } from 'query-string';
 
     export default {
@@ -59,7 +63,9 @@
             }
         },
         components: {
-            McvPagination
+            McvPagination,
+            McvLoading,
+            McvErrorMessage
         },
         props: {
             apiUrl: {
