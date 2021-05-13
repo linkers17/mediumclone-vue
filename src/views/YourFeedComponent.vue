@@ -22,7 +22,7 @@
     import McvFeedToggler from '@/components/FeedTogglerComponent';
 
     export default {
-        name: 'McvGlobalFeed',
+        name: 'McvYourFeed',
         components: {
             McvFeed,
             McvPopularTags,
@@ -31,7 +31,7 @@
         },
         data() {
             return {
-                apiUrl: '/articles'
+                apiUrl: '/articles/feed'
             }
         }
     }
