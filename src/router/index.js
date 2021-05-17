@@ -4,6 +4,7 @@ import LoginComponent from "@/views/LoginComponent";
 import GlobalFeedComponent from "@/views/GlobalFeedComponent";
 import YourFeedComponent from "@/views/YourFeedComponent";
 import TagFeedComponent from "@/views/TagFeedComponent";
+import ArticleComponent from "@/views/ArticleComponent";
 
 const routes = [
   {
@@ -44,7 +45,7 @@ const routes = [
   {
     path: '/articles/:slug',
     name: 'article',
-    component: GlobalFeedComponent
+    component: ArticleComponent
   },
   {
     path: '/settings',
