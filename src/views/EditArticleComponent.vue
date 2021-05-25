@@ -1,7 +1,6 @@
 <template>
     <div>
         <mcv-loading v-if="isLoading"></mcv-loading>
-        {{ initialValues }}
         <mcv-article-form
                 v-if="initialValues"
                 :initial-values="initialValues"

@@ -7,6 +7,7 @@ import TagFeedComponent from "@/views/TagFeedComponent";
 import ArticleComponent from "@/views/ArticleComponent";
 import CreateArticleComponent from "@/views/CreateArticleComponent";
 import EditArticleComponent from "@/views/EditArticleComponent";
+import SettingsComponent from "@/views/SettingsComponent";
 
 const routes = [
   {
@@ -52,7 +53,7 @@ const routes = [
   {
     path: '/settings',
     name: 'settings',
-    component: GlobalFeedComponent
+    component: SettingsComponent
   },
   {
     path: '/profiles/:slug',
