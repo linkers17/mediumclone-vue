@@ -20,7 +20,11 @@
                         <span class="date">{{ article.createdAt }}</span>
                     </div>
                     <div class="pull-xs-right">
-                        ADD TO FAVORITES
+                        <mcv-add-to-favorites
+                            :is-favorited="article.favorited"
+                            :article-slug="article.slug"
+                            :favorites-count="article.favoritesCount"
+                        ></mcv-add-to-favorites>
                     </div>
                 </div>
                 <router-link
@@ -51,8 +55,9 @@
 
     import McvPagination from '@/components/PaginationComponent';
     import McvLoading from '@/components/LoadingComponent';
-    import McvTagList from "./TagListComponent";
+    import McvTagList from "@/components/TagListComponent";
     import McvErrorMessage from '@/components/ErrorMessageComponent';
+    import McvAddToFavorites from "@/components/AddToFavoritesComponent";
 
     import { stringify, parseUrl } from 'query-string';
 
@@ -64,6 +69,7 @@
             }
         },
         components: {
+            McvAddToFavorites,
             McvTagList,
             McvPagination,
             McvLoading,
